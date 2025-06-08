@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Prime Number Generator</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      text-align: center;
+      margin-top: 50px;
+    }
+
+    table {
+      margin: 0 auto;
+      border-collapse: collapse;
+      width: 500px;
+    }
+
+    td {
+      border: 2px solid #ccc;
+      padding: 10px;
+    }
+
+    input[type="text"], textarea {
+      width: 100%;
+      padding: 8px;
+      box-sizing: border-box;
+    }
+
+    textarea {
+      height: 100px;
+    }
+
+    input[type="button"] {
+      padding: 10px 20px;
+      font-size: 16px;
+      cursor: pointer;
+    }
+
+    h2 {
+      margin-bottom: 30px;
+    }
+  </style>
+</head>
+<body>
+
+  <h2>Prime Number Generator</h2>
+
+  <table>
+    <tr>
+      <td>Start</td>
+      <td><input type="text" id="start"></td>
+    </tr>
+    <tr>
+      <td>End</td>
+      <td><input type="text" id="end"></td>
+    </tr>
+    <tr>
+      <td>Prime Number</td>
+      <td><textarea id="result" readonly></textarea></td>
+    </tr>
+    <tr>
+      <td colspan="2" style="text-align: center;">
+        <input type="button" value="Generate" onclick="generatePrimes()">
+      </td>
+    </tr>
+  </table>
+
+  <script>
+    function isPrime(num) {
+      if (num < 2) return false;
+      for (let i = 2; i <= Math.sqrt(num); i++) {
+        if (num % i === 0) return false;
+      }
+      return true;
+    }
+
+    function generatePrimes() {
+      const start = parseInt(document.getElementById('start').value);
+      const end = parseInt(document.getElementById('end').value);
+      const resultArea = document.getElementById('result');
+
+      let result = '';
+      for (let i = start; i <= end; i++) {
+        if (isPrime(i)) {
+          result += i + ' ';
+        }
+      }
+      resultArea.value = result.trim();
+    }
+  </script>
+
+</body>
+</html>
